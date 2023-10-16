@@ -94,10 +94,32 @@ const updateItem = async (req, res) => {
     res.status(200).json(item)
 }
 
+// Decrease quantity 
+const decreaseQuantity = async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const item = await Item.findByIdAndUpdate(
+            { _id: id },
+            { $inc: { quantity: -1 } },
+            { new: true }
+        );
+
+        if (!item) {
+            return res.status(404).json({ error: 'Not found your desired item' });
+        }
+
+        res.status(200).json(item);
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+}
+
 module.exports = {
     createItem,
     getItems,
     getItem,
     deleteItem,
-    updateItem
+    updateItem,
+    decreaseQuantity
 }
