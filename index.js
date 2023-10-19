@@ -4,12 +4,14 @@ const mongoose = require('mongoose');
 const multer = require('multer');
 require('dotenv').config()
 const itemRoutes = require('./routes/items.js')
+const userRoutes = require('./routes/users.js')
 
 const app = express()
 app.use(express.json())
 app.use(cors())
 
 app.use('/api/items', itemRoutes)
+app.use('/api/users', userRoutes)
 
 
 // connect to db
