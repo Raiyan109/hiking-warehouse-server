@@ -4,10 +4,6 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const itemSchema = new Schema({
-    image: {
-        data: Buffer,
-        contentType: String
-    },
     name: {
         type: String,
         required: true
@@ -16,9 +12,14 @@ const itemSchema = new Schema({
         type: Number,
         required: true
     },
-    des: {
+    desc: {
         type: String,
         required: true
+    },
+    img: {
+        type: String,
+        // data:Buffer,
+        // contentType: String
     },
     supplier: {
         type: String,
